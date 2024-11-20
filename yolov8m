@@ -1,0 +1,29 @@
+# Install the required version of the ultralytics library for YOLO
+!pip install ultralytics==8.2.2
+
+# Import required libraries
+import yaml  # Used for handling YAML files
+from ultralytics import YOLO  # YOLO class for model training and evaluation
+
+# Install the albumentations library for data augmentation
+!pip install albumentations==1.4
+
+# Initialize a YOLO model with the specified configuration
+# Load the pre-trained weights for the YOLOv8 medium model
+name_the_experiment = YOLO('yolov8m.yaml').load('yolov8m.pt')
+
+# Train the YOLO model with the specified parameters
+# 'data' specifies the path to the dataset configuration file (path.yaml)
+# 'augment' enables data augmentation during training
+# 'epochs' sets the number of training epochs
+# 'save_period' specifies the interval for saving model checkpoints
+# 'project' sets the name of the project directory for results
+name_the_experiment.train(data="path.yaml", augment=True, epochs=80, save_period=10, project="name_of_the_project")
+
+# Perform validation on the validation split of the dataset
+name_the_experiment.val()
+
+# Perform validation on the test split of the dataset
+# 'data' specifies the dataset configuration file
+# 'split' defines the subset of the dataset to evaluate (e.g., test split)
+name_the_experiment.val(data="path.yaml", split="test")
