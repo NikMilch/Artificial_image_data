@@ -19,6 +19,13 @@ basic_labeler_model = YOLO("baseline_model.pt")
 # 'fine_tunned_model_KITTI' is the fine-tuned YOLO model for improved labeling
 improved_labeler_model = YOLO("fine_tunned_model_KITTI")
 
+# Initialize the OpenAI client for generating images with DALL-E
+# The client defaults to using the API key set in the environment variable OPENAI_API_KEY.
+# Alternatively, you can specify the API key directly as shown below.
+client = OpenAI(
+    # defaults to os.environ.get("OPENAI_API_KEY")
+    api_key= "api_key",
+)
 # Function to predict object labels using YOLO
 def predict(model, img_path):
     """
