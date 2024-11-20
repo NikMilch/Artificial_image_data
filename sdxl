@@ -1,0 +1,10 @@
+from google.colab import drive
+drive.mount('/content/drive')
+
+!pip install diffusers --upgrade
+
+!pip install invisible_watermark transformers accelerate safetensors
+!pip install -U ultralytics
+import os
+# Replace 'your_huggingface_token' with the actual token you generated
+os.environ["HUGGINGFACE_TOKEN"] = "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"
